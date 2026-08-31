@@ -25,13 +25,11 @@ export const GitHubMatrix: React.FC = () => {
   const username = BIO_DATA.githubUsername;
   const [userProfile, setUserProfile] = useState<GitHubUser | null>(null);
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
-  const [loading, setLoading] = useState(false);
   const [chartKey, setChartKey] = useState(Date.now());
 
   // Fetch actual GitHub data
   useEffect(() => {
     let isMounted = true;
-    setLoading(true);
 
     Promise.all([
       fetch(`https://api.github.com/users/${username}`)
@@ -46,7 +44,6 @@ export const GitHubMatrix: React.FC = () => {
       if (isMounted) {
         setUserProfile(userData);
         setRepos(Array.isArray(repoData) ? repoData : []);
-        setLoading(false);
         setChartKey(Date.now());
       }
     });
