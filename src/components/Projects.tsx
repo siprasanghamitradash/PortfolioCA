@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
-import { ExternalLink, Code2 } from 'lucide-react';
-import { PROJECTS, type Project } from '../data/portfolioData';
+import React, { useState } from "react";
+import { Code2 } from "lucide-react";
+import { PROJECTS, type Project } from "../data/portfolioData";
 
 export const Projects: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const categories = ['All', 'AI / Machine Learning', 'Desktop App', 'Web Platform'];
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const categories = [
+    "All",
+    "AI / Machine Learning",
+    "Desktop App",
+    "Web Platform",
+  ];
 
-  const filtered = selectedCategory === 'All'
-    ? PROJECTS
-    : PROJECTS.filter(p => p.category === selectedCategory);
+  const filtered =
+    selectedCategory === "All"
+      ? PROJECTS
+      : PROJECTS.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="projects" aria-label="Flagship Projects" className="space-y-8 pt-6">
-      
+    <section
+      id="projects"
+      aria-label="Flagship Projects"
+      className="space-y-8 pt-6"
+    >
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-rose-500/20 pb-4">
         <div>
@@ -24,7 +33,8 @@ export const Projects: React.FC = () => {
             Flagship Projects
           </h2>
           <p className="text-slate-400 text-sm font-light">
-            Direct showcase of AI computer vision models, full CRUD desktop tools, and award-winning platforms.
+            Direct showcase of AI computer vision models, full CRUD desktop
+            tools, and award-winning platforms.
           </p>
         </div>
 
@@ -36,8 +46,8 @@ export const Projects: React.FC = () => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
                 selectedCategory === cat
-                  ? 'bg-gradient-to-r from-rose-600 to-amber-500 text-white font-bold shadow-[0_0_15px_rgba(244,63,94,0.4)]'
-                  : 'glass-card-warm text-slate-300 hover:text-white hover:border-rose-400/40'
+                  ? "bg-gradient-to-r from-rose-600 to-amber-500 text-white font-bold shadow-[0_0_15px_rgba(244,63,94,0.4)]"
+                  : "glass-card-warm text-slate-300 hover:text-white hover:border-rose-400/40"
               }`}
             >
               {cat}
@@ -100,23 +110,9 @@ export const Projects: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* Footer / GitHub Link */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-rose-300 hover:text-white transition-colors"
-              >
-                <span>View on GitHub</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
           </div>
         ))}
       </div>
-
     </section>
   );
 };
